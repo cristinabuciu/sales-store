@@ -1,0 +1,72 @@
+version: "2"
+services:
+
+  app:
+    build: ./app
+    links:
+      - db
+    ports:
+      - "3001:3001"
+#      - "8000:8000"
+    networks:
+      - mynet
+
+  server:
+    build: ./server
+    links:
+      - db
+    ports:
+      - "5000:5000"
+      - "8000:8000"
+    networks:
+      - mynet
+
+  token-generator:
+    build: ./token-generator
+    links:
+      - db
+    ports:
+      - "5001:5000"
+    networks:
+      - mynet
+
+  db:
+    image: mysql:5.7
+    ports:
+      - "32000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+    networks:
+      - mynet
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./prometheus:/etc/prometheus:ro
+    networks:
+      - mynet
+
+#  grafana:
+#    image: grafana/grafana
+#    volumes:
+#      - grafanadata:/var/lib/grafana
+#      - ./dashboards:/dashboards
+#      - ./grafana.ini:/etc/grafana/grafana.ini
+#    ports:
+#      - "3000:3000"
+#    environment:
+#      GF_USERS_DEFAULT_THEME: light
+#    #  GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-simple-json-datasource
+#    depends_on:
+#      - prometheus
+#    networks:
+#      - mynet
+
+networks:
+  mynet:
