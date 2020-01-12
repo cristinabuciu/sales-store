@@ -1,5 +1,8 @@
 $( document ).ready(function() {
     var cookie = $.cookie("username");
+    if(cookie == null){
+        window.location="login.html";
+    }
     $("#userAddStock").text(cookie);
     console.log( cookie );
 });
@@ -13,7 +16,32 @@ function submitFormAddStock() {
     var token = $.cookie("token");
 
     $.ajax({
-        url: "http://localhost:5000/add-stock?item_id="+item_id+"&provider="+provider+"&item_name="+item_name+"&quantity="+quantity,
+        url: "http://192.168.99.124:5001/verify-token",
+        // url: "http://localhost:5001/verify-token",
+        type: "POST",
+        headers: {
+            Accept: "application/json; charset=utf-8",
+            "Content-Type": "application/json; charset=utf-8"
+        },
+        data: JSON.stringify({
+            "username":username,
+            "token":token
+        }),
+        cache: false
+    }).done(function (result) {
+        var jsonResult = JSON.parse(result);
+        if(jsonResult == "access-denied"){
+            $.removeCookie("username");
+            $.removeCookie("token");
+            window.location="login.html";
+        }
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("fail")
+    });
+
+    $.ajax({
+        url: "http://192.168.99.124:5000/add-stock",
+        // url: "http://localhost:5000/add-stock",
         type: "POST",
         headers: {
             Accept: "application/json; charset=utf-8",
@@ -35,6 +63,5 @@ function submitFormAddStock() {
         // $("#update-result").append(result)
     }).fail(function (jqXHR, textStatus, errorThrown) {
         console.log("fail")
-// needs to implement if it fails
     });
 }

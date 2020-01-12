@@ -1,18 +1,25 @@
-version: "2"
+version: "3"
 services:
 
   app:
-    build: ./app
+    image: dockercristinabuciu/proiect-cc-app:v2
     links:
       - db
     ports:
-      - "3001:3000"
+      - "3003:3000"
 #      - "8000:8000"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+#    deploy:
+#      placement:
+#        constraints: [node.role == manager]
     networks:
       - mynet
 
   server:
-    build: ./server
+    image: dockercristinabuciu/proiect-cc-server:latest
     links:
       - db
     ports:
@@ -22,7 +29,7 @@ services:
       - mynet
 
   token-generator:
-    build: ./token-generator
+    image: dockercristinabuciu/proiect-cc-token-generator:v1
     links:
       - db
     ports:
@@ -51,6 +58,23 @@ services:
       - ./prometheus:/etc/prometheus:ro
     networks:
       - mynet
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    stop_grace_period: 1m30s
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - mynet
+
 
 #  grafana:
 #    image: grafana/grafana

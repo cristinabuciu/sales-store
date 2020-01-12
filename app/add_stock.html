@@ -39,15 +39,15 @@
             <div class="sidebar-brand-text mx-3">Sales Store</div>
         </a>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+<!--        &lt;!&ndash; Divider &ndash;&gt;-->
+<!--        <hr class="sidebar-divider my-0">-->
 
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
+<!--        &lt;!&ndash; Nav Item - Dashboard &ndash;&gt;-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="index.html">-->
+<!--                <i class="fas fa-fw fa-tachometer-alt"></i>-->
+<!--                <span>Dashboard</span></a>-->
+<!--        </li>-->
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -69,6 +69,17 @@
                     <a class="collapse-item" href="sales.html">Add a purchase</a>
                 </div>
             </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Add stock -->
+        <li class="nav-item">
+            <a class="nav-link" href="add_stock.html">
+                <!--            <a class="nav-link" href="add_stock.html">-->
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Add Stock</span></a>
         </li>
 
         <!-- Divider -->
@@ -228,7 +239,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" onclick="logout()">Logout</a>
             </div>
         </div>
     </div>
@@ -254,6 +265,7 @@
 <script src="js/jquery-cookie/jquery.cookie.js"></script>
 
 <script src="js/demo/add_stock.js"></script>
+<script src="js/demo/logout.js"></script>
 
 </body>
 

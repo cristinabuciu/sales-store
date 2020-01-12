@@ -15,14 +15,42 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 connections = {}
 
+@app.route("/remove-token", methods=["POST"])
+@cross_origin()
+def removeToken() -> str:
+    body = request.get_json()
+    username = body['username']
+
+    if username in connections.keys():
+        del connections[username]
+
+    return json.dumps("Token removed")
+
+
+@app.route("/verify-token", methods=["POST"])
+@cross_origin()
+def verifyToken() -> str:
+    body = request.get_json()
+    username = body['username']
+    token = body['token']
+
+    if username not in connections.keys():
+        return json.dumps("access-denied")
+    elif connections[username] == token:
+        return json.dumps("access-granted")
+    else:
+        return json.dumps("access-denied")
+
+
 @app.route("/token", methods=["POST"])
 @cross_origin()
 def generateToken() -> str:
 
     permision = False
+    body = request.get_json()
 
-    username = request.args.get('username')
-    password = request.args.get('password')
+    username = body['username']
+    password = body['password']
     hashedPassword = hashlib.md5(password.encode()).hexdigest()
 
     config = {

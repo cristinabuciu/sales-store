@@ -6,4 +6,5 @@ scrape_configs:
     static_configs:
       - targets:
 #          - docker.for.mac.localhost:5000
-          - docker-tutorial_server_1:5000
+#          - docker-tutorial_server_1:5000
+          - '192.168.99.124:5000'

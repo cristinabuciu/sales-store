@@ -40,16 +40,6 @@
         </a>
 
         <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
-
-        <!-- Divider -->
         <hr class="sidebar-divider">
 
         <!-- Heading -->
@@ -265,7 +255,8 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" onclick="logout()" >Logout</a>
+<!--                href="login.html"-->
             </div>
         </div>
     </div>
@@ -291,6 +282,7 @@
 <script src="js/jquery-cookie/jquery.cookie.js"></script>
 
 <script src="js/demo/stock.js"></script>
+<script src="js/demo/logout.js"></script>
 
 </body>
 
