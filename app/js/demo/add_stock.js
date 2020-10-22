@@ -16,8 +16,8 @@ function submitFormAddStock() {
     var token = $.cookie("token");
 
     $.ajax({
-        url: "http://192.168.99.124:5001/verify-token",
-        // url: "http://localhost:5001/verify-token",
+        // url: "http://192.168.99.124:5001/verify-token",
+        url: "http://localhost:5001/verify-token",
         type: "POST",
         headers: {
             Accept: "application/json; charset=utf-8",
@@ -40,8 +40,8 @@ function submitFormAddStock() {
     });
 
     $.ajax({
-        url: "http://192.168.99.124:5000/add-stock",
-        // url: "http://localhost:5000/add-stock",
+        // url: "http://192.168.99.124:5000/add-stock",
+        url: "http://localhost:5000/add-stock",
         type: "POST",
         headers: {
             Accept: "application/json; charset=utf-8",

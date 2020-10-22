@@ -26,8 +26,8 @@ function submitForm() {
     console.log(item_id)
 
     $.ajax({
-        url: "http://192.168.99.124:5001/verify-token",
-        // url: "http://localhost:5001/verify-token",
+        // url: "http://192.168.99.124:5001/verify-token",
+        url: "http://localhost:5001/verify-token",
         type: "POST",
         headers: {
             Accept: "application/json; charset=utf-8",
@@ -50,8 +50,8 @@ function submitForm() {
     });
 
     $.ajax({
-        url: "http://192.168.99.124:5000/stock",
-        // url: "http://localhost:5000/stock",
+        // url: "http://192.168.99.124:5000/stock",
+        url: "http://localhost:5000/stock",
         // url: "data.json",
         type: "POST",
         headers: {

@@ -41,8 +41,8 @@ function submitFormSales() {
     });
 
     $.ajax({
-        url: "http://192.168.99.124:5000/sales",
-        // url: "http://localhost:5000/sales",
+        // url: "http://192.168.99.124:5000/sales",
+        url: "http://localhost:5000/sales",
         type: "POST",
         headers: {
             Accept: "application/json; charset=utf-8",

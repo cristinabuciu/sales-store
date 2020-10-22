@@ -6,8 +6,8 @@ function submitLogin() {
     $("#wrong_login").text("");
 
     $.ajax({
-        url: "http://192.168.99.124:5001/token",
-        // url: "http://localhost:5001/token",
+        // url: "http://192.168.99.124:5001/token",
+        url: "http://localhost:5001/token",
         type: "POST",
         headers: {
             Accept: "application/json; charset=utf-8",

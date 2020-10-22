@@ -4,8 +4,8 @@ function logout() {
     $.removeCookie("token");
 
     $.ajax({
-        url: "http://192.168.99.124:5001/remove-token",
-        // url: "http://localhost:5001/remove-token",
+        // url: "http://192.168.99.124:5001/remove-token",
+        url: "http://localhost:5001/remove-token",
         type: "POST",
         headers: {
             Accept: "application/json; charset=utf-8",

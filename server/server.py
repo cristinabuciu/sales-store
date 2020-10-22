@@ -156,8 +156,6 @@ def getStockDbState(item_name, provider):
 
     return results[0]
 
-# def validateToken
-
 
 
 

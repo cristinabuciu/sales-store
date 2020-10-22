@@ -5,3 +5,6 @@ cd ../
 cd app
 docker build -t dockercristinabuciu/proiect-cc-app:v2 -f Dockerfile .
 cd ../
+cd server
+docker build -t dockercristinabuciu/proiect-cc-server:latest -f Dockerfile .
+cd ../
