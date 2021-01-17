@@ -7,28 +7,14 @@ services:
       - db
     ports:
       - "3003:3000"
-#      - "8000:8000"
     deploy:
       replicas: 1
       restart_policy:
         condition: on-failure
-#    deploy:
-#      placement:
-#        constraints: [node.role == manager]
     networks:
       - mynet
     depends_on: 
       - db
-
-#  server:
-#    image: dockercristinabuciu/proiect-cc-server:latest
-#    links:
-#      - db
-#    ports:
-#      - "5000:5000"
-#      - "8000:8000"
-#    networks:
-#      - mynet
 
   stock-service:
     image: dockercristinabuciu/proiect-cc-stock-service:latest
@@ -42,8 +28,8 @@ services:
     depends_on:
       - db
 
-  token-generator:
-    image: dockercristinabuciu/proiect-cc-token-generator:v1
+  authentification-service:
+    image: dockercristinabuciu/proiect-cc-authentification-service:v1
     links:
       - db
     ports:

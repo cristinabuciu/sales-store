@@ -1,13 +1,17 @@
-function submitLogin() {
+function submitRegister() {
 
-    var username = $("#username").val();
-    var password = $("#password").val();
+    var username = $("#registerUsername").val();
+    var password = $("#registerInputPassword").val();
     // console.log(item_id)
-    $("#wrong_login").text("");
+    $("#wrong_register").text("");
+
+    console.log("register")
+    console.log(password)
+    console.log(password)
 
     $.ajax({
         // url: "http://192.168.99.124:5001/login",
-        url: "http://localhost:5001/login",
+        url: "http://localhost:5001/register",
         type: "POST",
         headers: {
             Accept: "application/json; charset=utf-8",
@@ -23,15 +27,11 @@ function submitLogin() {
         var jsonResult = JSON.parse(result);
         console.log(jsonResult)
         if(jsonResult == "Permission denied"){
-            $("#wrong_login").text("Wrong credentials. Please try again.");
+            $("#wrong_register").text("Something went wrong, please retry.");
         }else {
-            $.cookie("username", username);
-            $.cookie("token", jsonResult);
-            window.location="stock.html";
+            window.location="login.html";
         }
 
-        // $("#update-result").text(jsonResult);
-        // $("#update-result").append(result)
     }).fail(function (jqXHR, textStatus, errorThrown) {
         console.log("fail")
 // needs to implement if it fails
