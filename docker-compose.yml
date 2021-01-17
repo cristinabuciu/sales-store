@@ -17,6 +17,8 @@ services:
 #        constraints: [node.role == manager]
     networks:
       - mynet
+    depends_on: 
+      - db
 
 #  server:
 #    image: dockercristinabuciu/proiect-cc-server:latest
@@ -37,6 +39,8 @@ services:
       - "8000:8000"
     networks:
       - mynet
+    depends_on:
+      - db
 
   token-generator:
     image: dockercristinabuciu/proiect-cc-token-generator:v1
@@ -54,7 +58,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ./db:/docker-entrypoint-initdb.d/:ro
+      - ./db:/docker-entrypoint-initdb.d/
     networks:
       - mynet
 

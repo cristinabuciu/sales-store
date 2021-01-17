@@ -53,6 +53,6 @@ CREATE TABLE users
 );
 
 INSERT INTO users
-(user_id, username, password_hash)
-VALUES (1, 'cristina', '0c74ac34d6652b2da30488d4f38496d8')
-VALUES (2, 'admin', '21232f297a57a5a743894a0e4a801fc3')
+    (USER_ID, USERNAME, PASSWORD_HASH)
+VALUES (1, 'cristina', '0c74ac34d6652b2da30488d4f38496d8'),
+       (2, 'admin', '21232f297a57a5a743894a0e4a801fc3');
