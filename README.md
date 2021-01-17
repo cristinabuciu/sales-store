@@ -16,13 +16,13 @@
     - [ ] sendStock ?
     - [ ] processStock ?
     
-3. [ ] OrderService
+3. [x] OrderService
 
     -tab nou Order in care facem comenzi (refolosim Add purchase)
 
-    - [ ] placeOrder
-    - [ ] proccessOrder
-    - [ ] updateOrder
+    - [x] placeOrder
+    - [x] proccessOrder
+    - [x] updateOrder
     
 4. [ ] ReportService
     
