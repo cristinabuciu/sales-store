@@ -42,6 +42,17 @@ services:
     depends_on:
       - db
 
+  reports-service:
+    image: dockercristinabuciu/proiect-cc-reports-service:latest
+    links:
+      - db
+    ports:
+      - "5002:5000"
+    networks:
+      - mynet
+    depends_on:
+      - db
+
   token-generator:
     image: dockercristinabuciu/proiect-cc-token-generator:v1
     links:
