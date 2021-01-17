@@ -28,6 +28,18 @@ services:
     depends_on:
       - db
 
+  order-service:
+    image: dockercristinabuciu/proiect-cc-order-service:latest
+    links:
+      - db
+    ports:
+      - "5003:5000"
+#      - "8000:8000"
+    networks:
+      - mynet
+    depends_on:
+      - db
+
   authentification-service:
     image: dockercristinabuciu/proiect-cc-authentification-service:v1
     links:

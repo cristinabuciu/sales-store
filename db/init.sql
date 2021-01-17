@@ -1,18 +1,3 @@
-# CREATE DATABASE knights;
-# use knights;
-#
-# CREATE TABLE favorite_colors
-# (
-#     name  VARCHAR(20),
-#     color VARCHAR(10)
-# );
-#
-# INSERT INTO favorite_colors
-#     (name, color)
-# VALUES ('Lancelot', 'blue'),
-#        ('Galahad', 'yellow');
-#
-
 CREATE DATABASE store;
 use store;
 
@@ -34,7 +19,7 @@ VALUES (1,'sacou', 'provider1',10 ),
 
 CREATE TABLE price
 (
-    item_id   INTEGER(20),
+    item_id   INTEGER(10),
     price     INTEGER(5)
 );
 
@@ -47,9 +32,17 @@ VALUES (1, 100 ),
 
 CREATE TABLE users
 (
-    user_id     INTEGER(5),
+    user_id     INTEGER(10),
     username    VARCHAR(20),
     password_hash    VARCHAR(50)
+);
+
+CREATE TABLE orders (
+    order_id INTEGER(10),
+    item_id INTEGER(10),
+    user_id INTEGER(10),
+    quantity INTEGER(5),
+    oder_timestamp INTEGER(10)
 );
 
 INSERT INTO users

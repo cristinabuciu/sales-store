@@ -99,9 +99,6 @@ def addStockDb(item_id, item_name, provider, quantity):
             'database': 'store'
         }
 
-        # app.logger.info("provider = " + provider)
-        # app.logger.info("item_name = " + item_name)
-        # app.logger.info("quantity = " + str(quantity))
         connection = mysql.connector.connect(**config)
         cursor = connection.cursor()
 
@@ -186,32 +183,6 @@ def stock_function() -> str:
     return_val = getStock(item_id,item_name)
     return json.dumps(return_val)
 
-@app.route("/sales", methods=["POST"])
-@cross_origin()
-def sales_function() -> str:
-    c.labels('post', '/sales').inc()
-
-    body = request.get_json()
-    # c.inc()
-    # item_name = request.args.get('item_name')
-    # provider = request.args.get('provider')
-    # quantity = int(request.args.get('quantity'))
-
-    item_name = body["item_name"]
-    provider = body["provider"]
-    quantity = int(body["quantity"])
-    username = body["username"]
-    token = body["token"]
-
-    result = updateDb(item_name, provider,quantity)
-
-    if result:
-        purchasesPerProvider.labels(provider).inc(quantity)
-        [id, name, provider, ret_stock] = getStockDbState(item_name, provider)
-        stock.labels(id, name, provider).set(ret_stock)
-        return json.dumps("Update done")
-    else:
-        return json.dumps("Couldn't find product in stock, please check stock before")
 
 
 @app.route("/add-stock", methods=["POST"])
@@ -220,10 +191,7 @@ def add_stock_fucntion() -> str:
     c.labels('post', '/add-stock').inc()
 
     body = request.get_json()
-    # item_id = request.args.get('item_id')
-    # item_name = request.args.get('item_name')
-    # provider = request.args.get('provider')
-    # quantity = int(request.args.get('quantity'))
+
 
     item_id = body["item_id"]
     item_name = body["item_name"]
