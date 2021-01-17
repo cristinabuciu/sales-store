@@ -10,3 +10,6 @@ cd ../
 cd stock-service
 docker build -t dockercristinabuciu/proiect-cc-stock-service:latest -f Dockerfile .
 cd ../
+cd reports-service
+docker build -t dockercristinabuciu/proiect-cc-reports-service:latest -f Dockerfile .
+cd ../

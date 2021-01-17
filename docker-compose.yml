@@ -37,6 +37,17 @@ services:
     networks:
       - mynet
 
+  reports-service:
+    image: dockercristinabuciu/proiect-cc-reports-service:latest
+    links:
+      - db
+    ports:
+      - "5002:5000"
+    networks:
+      - mynet
+    depends_on:
+      - db
+
   db:
     image: mysql:5.7
     ports:
