@@ -51,7 +51,7 @@ function submitForm() {
 
     $.ajax({
         // url: "http://192.168.99.124:5000/stock",
-        url: "http://localhost:5000/stock",
+        url: "http://localhost:5000/get-stock",
         // url: "data.json",
         type: "POST",
         headers: {

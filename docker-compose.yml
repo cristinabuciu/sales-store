@@ -18,8 +18,18 @@ services:
     networks:
       - mynet
 
-  server:
-    image: dockercristinabuciu/proiect-cc-server:latest
+#  server:
+#    image: dockercristinabuciu/proiect-cc-server:latest
+#    links:
+#      - db
+#    ports:
+#      - "5000:5000"
+#      - "8000:8000"
+#    networks:
+#      - mynet
+
+  stock-service:
+    image: dockercristinabuciu/proiect-cc-stock-service:latest
     links:
       - db
     ports:
