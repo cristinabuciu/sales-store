@@ -1,13 +1,13 @@
 # sales-store
-1. Authentification Service:
+1.[x] Authentification Service:
 
     - pt login username:cristina parola:cristina
     - [x] login 
     - [x] logout 
-    - [ ] register 
+    - [x] register 
     - [x] validateCredentials 
     
-2. StockService
+2.[ ] StockService
     
     - [x] getStock  
     - [x] getStockById 
@@ -16,7 +16,7 @@
     - [ ] sendStock ?
     - [ ] processStock ?
     
-3. OrderService
+3.[ ] OrderService
 
     -tab nou Order in care facem comenzi (refolosim Add purchase)
 
@@ -24,7 +24,7 @@
     - [ ] proccessOrder
     - [ ] updateOrder
     
-4. ReportService
+4.[ ] ReportService
     
     - [ ] getReportByTimeRange
     - [ ] getCustomReport
@@ -33,12 +33,12 @@
     - [ ] getOrderReport
     - [ ] sendReport
     
-5. CustomerRequestService
+5.[ ] CustomerRequestService
     
     - [ ] sendCustomerRequest
     - [ ] porcessCustomerRequest
     
-6. RecommendationService
+6.[ ] RecommendationService
 
     - [ ] getCustomerRemmendation
     - [ ] getRecommendation
