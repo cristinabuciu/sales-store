@@ -42,7 +42,7 @@ CREATE TABLE orders (
     item_id INTEGER(10),
     user_id INTEGER(10),
     quantity INTEGER(5),
-    oder_timestamp INTEGER(10)
+    order_timestamp INTEGER(10)
 );
 
 INSERT INTO users

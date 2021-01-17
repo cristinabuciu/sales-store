@@ -29,8 +29,9 @@
     - [ ] getReportByTimeRange
     - [ ] getCustomReport
     - [ ] getCustomerReport
-    - [ ] getStockReport
-    - [ ] getOrderReport
+    - [x] getStockReport
+    - [x] getOrderReport
+    - [x] getUsersReport
     - [ ] sendReport
     
 5. [ ] CustomerRequestService

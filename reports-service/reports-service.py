@@ -13,6 +13,8 @@ from multiprocessing.pool import ThreadPool
 
 from flask_cors import CORS, cross_origin
 
+from datetime import datetime
+
 app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)
 cors = CORS(app)
@@ -58,6 +60,25 @@ def get_users_report() -> List[Dict]:
     query = "SELECT * FROM users"
     cursor.execute(query)
     results = [[user_id, username] for (user_id, username, password_hash) in cursor]
+    cursor.close()
+    connection.close()
+    return json.dumps(results)
+
+@app.route("/get-orders-report", methods=["GET"])
+@cross_origin()
+def get_orders_report() -> List[Dict]:
+    config = {
+        'user': 'root',
+        'password': 'root',
+        'host': 'db',
+        'port': '3306',
+        'database': 'store'
+    }
+    connection = mysql.connector.connect(**config)
+    cursor = connection.cursor()
+    query = "SELECT * FROM orders"
+    cursor.execute(query)
+    results = [[order_id, item_id, user_id, quantity, str(datetime.fromtimestamp(oder_timestamp))] for (order_id, item_id, user_id, quantity, oder_timestamp) in cursor]
     cursor.close()
     connection.close()
     return json.dumps(results)
