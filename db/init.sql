@@ -26,8 +26,8 @@ CREATE TABLE stock
 
 INSERT INTO stock
     (ITEM_ID, ITEM_NAME, PROVIDER, STOCK)
-VALUES (1,'ciorapi', 'provider1',10 ),
-       (2,'chiloti', 'provider1',8 ),
+VALUES (1,'sacou', 'provider1',10 ),
+       (2,'parfum', 'provider1',8 ),
        (3,'pantaloni', 'provider2',50 ),
        (4,'tricouri', 'provider2',30 );
 
@@ -40,8 +40,8 @@ CREATE TABLE price
 
 INSERT INTO price
 (ITEM_ID, PRICE)
-VALUES (1, 10 ),
-       (2,20 ),
+VALUES (1, 100 ),
+       (2,200 ),
        (3,100 ),
        (4,150 );
 
@@ -55,3 +55,4 @@ CREATE TABLE users
 INSERT INTO users
 (user_id, username, password_hash)
 VALUES (1, 'cristina', '0c74ac34d6652b2da30488d4f38496d8')
+VALUES (2, 'admin', '21232f297a57a5a743894a0e4a801fc3')
