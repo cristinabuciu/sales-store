@@ -52,6 +52,7 @@ def generateToken() -> str:
     username = body['username']
     password = body['password']
     hashedPassword = hashlib.md5(password.encode()).hexdigest()
+    scope = ''
 
     config = {
         'user': 'root',
@@ -61,9 +62,9 @@ def generateToken() -> str:
         'database': 'store'
     }
     connection = mysql.connector.connect(**config)
+    app.logger.info(connection.is_connected())
     cursor = connection.cursor()
-
-    query = "SELECT password_hash FROM users WHERE username=\'" + username + "\'"
+    query = "SELECT password_hash, scope FROM users WHERE username=\'" + username + "\'"
 
     cursor.execute(query)
     results = [passs for (passs) in cursor]
@@ -74,8 +75,10 @@ def generateToken() -> str:
     else:
         app.logger.info("intra2")
         dbPassword = results[0][0]
+        scope = results[0][1]
         app.logger.info("db: " + str(dbPassword))
         app.logger.info("pass: " + hashedPassword)
+        app.logger.info("scope: " + scope)
 
         if dbPassword == hashedPassword:
             app.logger.info("intra3")
@@ -91,7 +94,8 @@ def generateToken() -> str:
         letters = string.ascii_lowercase
         token = ''.join(random.choice(letters) for i in range(30))
         connections[username] = token
-        return json.dumps(token)
+        vals = {"token" : token, "scope" : scope}
+        return json.dumps(vals);#{"token": token, "scope" : scope})
     else:
         app.logger.info("intra6")
         return json.dumps("Permission denied")

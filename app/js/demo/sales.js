@@ -59,6 +59,7 @@ function submitFormSales() {
         if(jsonResult == "access-denied"){
             $.removeCookie("username");
             $.removeCookie("token");
+            $.removeCookie("scope");
             window.location="login.html";
         }
     }).fail(function (jqXHR, textStatus, errorThrown) {

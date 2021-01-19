@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sales Store Add Stock</title>
+    <title>Help</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,15 +39,15 @@
             <div class="sidebar-brand-text mx-3">Sales Store</div>
         </a>
 
-<!--        &lt;!&ndash; Divider &ndash;&gt;-->
-<!--        <hr class="sidebar-divider my-0">-->
+        <!--        &lt;!&ndash; Divider &ndash;&gt;-->
+        <!--        <hr class="sidebar-divider my-0">-->
 
-<!--        &lt;!&ndash; Nav Item - Dashboard &ndash;&gt;-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link" href="index.html">-->
-<!--                <i class="fas fa-fw fa-tachometer-alt"></i>-->
-<!--                <span>Dashboard</span></a>-->
-<!--        </li>-->
+        <!--        &lt;!&ndash; Nav Item - Dashboard &ndash;&gt;-->
+        <!--        <li class="nav-item">-->
+        <!--            <a class="nav-link" href="index.html">-->
+        <!--                <i class="fas fa-fw fa-tachometer-alt"></i>-->
+        <!--                <span>Dashboard</span></a>-->
+        <!--        </li>-->
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -57,26 +57,18 @@
             Sales Utils
         </div>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Add stock -->
+        <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="sales.html">
-                <!--            <a class="nav-link" href="add_stock.html">-->
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <span>Order</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Add stock -->
-        <li class="nav-item">
-            <a class="nav-link" href="stock.html">
-                <!--            <a class="nav-link" href="add_stock.html">-->
-                <i class="fa fa-check" aria-hidden="true"></i>
-                <span>Check Stock</span></a>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSales" aria-expanded="true" aria-controls="collapseSales">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Sales</span>
+            </a>
+            <div id="collapseSales" class="collapse" aria-labelledby="headingSales" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="stock.html">Check Stock</a>
+                    <a class="collapse-item" href="sales.html">Add a purchase</a>
+                </div>
+            </div>
         </li>
 
         <!-- Divider -->
@@ -91,32 +83,31 @@
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+        <hr class="sidebar-divider d-none d-md-block">
 
         <!-- Nav Item - Add stock -->
         <li class="nav-item">
             <a class="nav-link" href="reports.html">
                 <!--            <a class="nav-link" href="add_stock.html">-->
                 <i class="far fa-chart-bar"></i>
-                <span>Reports</span></a>
+                <span>Get Report</span></a>
         </li>
-
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
-        
-       <!-- Nav Item - Help -->
-       <li class="nav-item">
-        <a class="nav-link" href="customer-request.html">
-            <!--            <a class="nav-link" href="add_stock.html">-->
-            <i class="far fa-question-circle"></i>
-            <span>Help</span></a>
+
+
+
+        <!-- Nav Item - Help -->
+        <li class="nav-item">
+            <a class="nav-link" href="customer-request.html">
+                <!--            <a class="nav-link" href="add_stock.html">-->
+                <i class="far fa-question-circle"></i>
+                <span>Help</span></a>
         </li>
-        
-        <!-- Divider -->
+
         <hr class="sidebar-divider d-none d-md-block">
-        
-                    
+                
         <!-- Nav Item - Help -->
         <li class="nav-item">
             <a class="nav-link" href="users-feedback.html">
@@ -125,15 +116,13 @@
                 <span>View users feedback</span></a>
             </li>
         
-            <!-- Divider -->
+        <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
-            
-
+        
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
-
 
 
     </ul>
@@ -212,48 +201,56 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Order</h1>
-                <!--                <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>-->
-                <!-- Form -->
-                <form>
-                    <div class="form-group">
-                        <label>Item name</label>
-                        <input type="text" class="form-control" id="item_id_add_stock" placeholder="item id">
+                <div class="container contact-form">
+                    <div class="row">
+                            <img src="img/help.png" alt="Help"style="width:120px; height:120px; margin: 0 auto;"/>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Item name</label>
-                        <input type="text" class="form-control" id="item_name_add_stock" placeholder="item name">
+                    <div id="animation">
+                        <div id="first">
+                            <h3>How can we help?</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="name" name="txtName" class="form-control" placeholder="Your Name *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" id="mail" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" id="phone-number" name="txtPhone" class="form-control" placeholder="Your Phone Number *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <button id="next" type="button" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <textarea name="txtMsg" id="message" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="second" style="display:none;">
+                            <div class="row">
+                            <h1 class="display-3" style="margin:0 auto;">Thank You!</h1>
+                            </div>
+                            <div class="row">
+                            <p class="lead" style="margin:0 auto;"><strong>We will reach out sortly</strong> for further instructions.</p>
+                            </div>
+                            <hr>
                     </div>
-                    <div class="form-group">
-                        <label >Provider</label>
-                        <input type="text" class="form-control" id="provider_add_stock" placeholder="provider">
-                    </div>
-                    <div class="form-group">
-                        <label >Quantity</label>
-                        <input type="text" class="form-control" id="quantity_add_stock" placeholder="quantity">
-                    </div>
-                    <button onclick="submitFormAddStock()" type="button" class="btn btn-primary">Submit</button>
-                </form>
-                <!-- end Form -->
-
-                <br>
-                <p id="update_result_add_stock"></p>
-                <br>
-                <br>
-
+                </div>
             </div>
             <!-- /.container-fluid -->
 
-        </div>
         <!-- End of Main Content -->
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2019</span>
+                    <span>Copyright &copy; SalesStore 2021</span>
                 </div>
             </div>
         </footer>
@@ -308,7 +305,7 @@
 
 <script src="js/jquery-cookie/jquery.cookie.js"></script>
 
-<script src="js/demo/add_stock.js"></script>
+<script src="js/demo/customer-request.js"></script>
 <script src="js/demo/logout.js"></script>
 
 </body>

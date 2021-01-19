@@ -2,6 +2,7 @@ function logout() {
     var username =$.cookie("username");
     $.removeCookie("username");
     $.removeCookie("token");
+    $.removeCookie("scope");
 
     $.ajax({
         // url: "http://192.168.99.124:5001/logout",

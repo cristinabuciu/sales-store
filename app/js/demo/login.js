@@ -4,10 +4,10 @@ function submitLogin() {
     var password = $("#password").val();
     // console.log(item_id)
     $("#wrong_login").text("");
+    console.log(password)
 
     $.ajax({
-        // url: "http://192.168.99.124:5001/login",
-        url: "http://localhost:5001/login",
+        url: "http://localhost:5001/token",
         type: "POST",
         headers: {
             Accept: "application/json; charset=utf-8",
@@ -22,11 +22,12 @@ function submitLogin() {
         console.log("done");
         var jsonResult = JSON.parse(result);
         console.log(jsonResult)
-        if(jsonResult == "Permission denied"){
+        if(jsonResult === "Permission denied"){
             $("#wrong_login").text("Wrong credentials. Please try again.");
         }else {
             $.cookie("username", username);
-            $.cookie("token", jsonResult);
+            $.cookie("token", jsonResult.token);
+            $.cookie("scope", jsonResult.scope)
             window.location="stock.html";
         }
 

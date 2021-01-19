@@ -34,7 +34,8 @@ CREATE TABLE users
 (
     user_id     INTEGER(10),
     username    VARCHAR(20),
-    password_hash    VARCHAR(50)
+    password_hash    VARCHAR(50),
+    scope    VARCHAR(10)
 );
 
 CREATE TABLE orders (
@@ -46,6 +47,15 @@ CREATE TABLE orders (
 );
 
 INSERT INTO users
-    (USER_ID, USERNAME, PASSWORD_HASH)
-VALUES (1, 'cristina', '0c74ac34d6652b2da30488d4f38496d8'),
-       (2, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+(USER_ID, USERNAME, PASSWORD_HASH, SCOPE)
+VALUES (1, 'cristina', '0c74ac34d6652b2da30488d4f38496d8', 'admin'),
+       (2, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+
+CREATE TABLE messages
+(
+    date DATETIME,
+    name   VARCHAR(40),
+    email VARCHAR(40),
+    phone_number  VARCHAR(40),
+    message     VARCHAR(100)
+);

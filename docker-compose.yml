@@ -49,12 +49,21 @@ services:
     networks:
       - mynet
 
+
   reports-service:
     image: dockercristinabuciu/proiect-cc-reports-service:latest
     links:
       - db
     ports:
       - "5002:5000"
+
+  customer-request:
+    image: dockercristinabuciu/proiect-cc-customer-request-service:latest
+    links:
+      - db
+    ports:
+      - "5004:5000"
+
     networks:
       - mynet
     depends_on:
