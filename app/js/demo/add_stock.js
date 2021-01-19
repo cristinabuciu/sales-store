@@ -1,11 +1,15 @@
 $( document ).ready(function() {
-    var cookie = $.cookie("username");
-    if(cookie == null){
+    var cookie_username = $.cookie("username");
+    if(cookie_username == null){
         window.location="login.html";
     }
-    $("#userAddStock").text(cookie);
-    console.log( cookie );
+    $("#userAddStock").text(cookie_username);
+    var cookie_scope = $.cookie("scope")
+    if (cookie_scope === 'admin') {
+        $('#adminMenu').show();
+    }
 });
+
 function submitFormAddStock() {
 
     var provider = $("#provider_add_stock").val();

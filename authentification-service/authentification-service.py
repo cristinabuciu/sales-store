@@ -52,6 +52,7 @@ def generateToken() -> str:
 
     username = body['username']
     password = body['password']
+    scope = ''
     hashedPassword = hashlib.md5(password.encode()).hexdigest()
 
     config = {
@@ -64,37 +65,34 @@ def generateToken() -> str:
     connection = mysql.connector.connect(**config)
     cursor = connection.cursor()
 
-    query = "SELECT password_hash FROM users WHERE username=\'" + username + "\'"
+    query = "SELECT password_hash, scope FROM users WHERE username=\'" + username + "\'"
 
     cursor.execute(query)
     results = [passs for (passs) in cursor]
 
     if len(results) == 0:
-        app.logger.info("intra1")
         permision = False
     else:
-        app.logger.info("intra2")
         dbPassword = results[0][0]
+        scope = results[0][1]
         app.logger.info("db: " + str(dbPassword))
         app.logger.info("pass: " + hashedPassword)
+        app.logger.info("scope: " + scope)
 
         if dbPassword == hashedPassword:
-            app.logger.info("intra3")
             permision = True
         else:
-            app.logger.info("intra4")
             permision = False
     cursor.close()
     connection.close()
 
     if permision:
-        app.logger.info("intra5")
         letters = string.ascii_lowercase
         token = ''.join(random.choice(letters) for i in range(30))
         connections[username] = token
-        return json.dumps(token)
+        vals = {"token" : token, "scope" : scope}
+        return json.dumps(vals)
     else:
-        app.logger.info("intra6")
         return json.dumps("Permission denied")
 
 @app.route("/register", methods=["POST"])
@@ -120,7 +118,8 @@ def register() -> str:
 
         global current_user_id
         current_user_id = current_user_id + 1
-        query = "INSERT INTO users VALUES (" + str(current_user_id) + "," + "\'"+username + "\',\'" + hashedPassword + "\'" + ")"
+        scope = 'user'
+        query = "INSERT INTO users VALUES (" + str(current_user_id) + "," + "\'"+username + "\',\'" + hashedPassword + "\',\'" + scope + "\'" + ")"
         app.logger.info("REGISTER: " + query);
 
         cursor.execute(query)

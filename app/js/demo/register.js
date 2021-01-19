@@ -10,7 +10,6 @@ function submitRegister() {
     console.log(password)
 
     $.ajax({
-        // url: "http://192.168.99.124:5001/login",
         url: "http://localhost:5001/register",
         type: "POST",
         headers: {

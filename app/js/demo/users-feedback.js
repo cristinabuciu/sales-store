@@ -3,8 +3,13 @@ $(document).ready(function() {
     if(cookie == null){
         window.location="login.html";
     }
+    $("#usersFeedback").text(cookie);
     var username = $.cookie("username")
     var token = $.cookie("token")
+    var cookie_scope = $.cookie("scope")
+    if (cookie_scope !== 'admin') {
+        window.location="login.html";
+    }
     $.ajax({
         // url: "http://192.168.99.124:5001/verify-token",
         url: "http://localhost:5001/verify-token",

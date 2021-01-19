@@ -1,10 +1,15 @@
 $(document).ready(function() {
-    var cookie = $.cookie("username");
-    if(cookie == null){
+
+    var cookie_username = $.cookie("username");
+    if(cookie_username == null){
         window.location="login.html";
     }
-    var username = $.cookie("username")
-    var token = $.cookie("token")
+    $("#userGetReports").text(cookie_username);
+    var cookie_scope = $.cookie("scope")
+    if (cookie_scope === 'admin') {
+        $('#adminMenu').show();
+    }
+    
     $.ajax({
         // url: "http://192.168.99.124:5001/verify-token",
         url: "http://localhost:5001/verify-token",

@@ -36,8 +36,8 @@
     
 5. [ ] CustomerRequestService
     
-    - [ ] sendCustomerRequest
-    - [ ] porcessCustomerRequest
+    - [x] sendCustomerRequest
+    - [x] porcessCustomerRequest
     
 6. [ ] RecommendationService
 

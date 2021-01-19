@@ -7,7 +7,7 @@ function submitLogin() {
     console.log(password)
 
     $.ajax({
-        url: "http://localhost:5001/token",
+        url: "http://localhost:5001/login",
         type: "POST",
         headers: {
             Accept: "application/json; charset=utf-8",
