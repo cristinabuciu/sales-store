@@ -17,8 +17,8 @@ cd ../
 
 cd order-service
 docker build -t dockercristinabuciu/proiect-cc-order-service:latest -f Dockerfile .
+cd ../
 
 cd customer-request-service
 docker build -t dockercristinabuciu/proiect-cc-customer-request-service:latest -f Dockerfile .
-
 cd ../
