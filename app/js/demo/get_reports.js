@@ -5,8 +5,9 @@ $( document ).ready(function() {
     }
     $("#useGetReports").text(cookie_username);
     var cookie_scope = $.cookie("scope")
-    if (cookie_scope === 'admin') {
-        $('#adminMenu').show();
+    if (cookie_scope !== 'admin') {
+        alert('No admin!' + cookie_scope + ' ' + cookie_username)
+        window.location="login.html";
     }
 });
 
@@ -39,8 +40,10 @@ function getStockReport() {
     }).done(function (result) {
         var jsonResult = JSON.parse(result);
         if(jsonResult == "access-denied"){
+            alert('Access denied!' + username + ' ' + token)
             $.removeCookie("username");
             $.removeCookie("token");
+            $.removeCookie("scope")
             window.location="login.html";
         }
     }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -103,6 +106,7 @@ function getOrdersReport() {
         if(jsonResult == "access-denied"){
             $.removeCookie("username");
             $.removeCookie("token");
+            $.removeCookie("scope");
             window.location="login.html";
         }
     }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -166,6 +170,7 @@ function getUsersReport() {
         if(jsonResult == "access-denied"){
             $.removeCookie("username");
             $.removeCookie("token");
+            $.removeCookie("scope");
             window.location="login.html";
         }
     }).fail(function (jqXHR, textStatus, errorThrown) {

@@ -54,6 +54,8 @@ services:
     image: dockercristinabuciu/proiect-cc-reports-service:latest
     links:
       - db
+    networks:
+      - mynet
     ports:
       - "5002:5000"
 

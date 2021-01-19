@@ -36,6 +36,7 @@ def get_stock_report() -> List[Dict]:
         'port': '3306',
         'database': 'store'
     }
+    
     connection = mysql.connector.connect(**config)
     cursor = connection.cursor()
     query = "SELECT * FROM stock"

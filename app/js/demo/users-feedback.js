@@ -7,6 +7,8 @@ $(document).ready(function() {
     var token = $.cookie("token")
     var cookie_scope = $.cookie("scope")
     if (cookie_scope !== 'admin') {
+
+        alert('No admin!' + cookie_scope + ' ' + cookie_username)
         window.location="login.html";
     }
     $.ajax({
@@ -28,6 +30,8 @@ $(document).ready(function() {
             $.removeCookie("username");
             $.removeCookie("token");
             $.removeCookie("scope");
+
+            alert('Access denied!' + username + ' ' + token)
             window.location="login.html";
         }
     }).fail(function (jqXHR, textStatus, errorThrown) {
