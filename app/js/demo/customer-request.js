@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
-    var cookie_username = $.cookie("username");
-    if(cookie_username == null){
+    var username = $.cookie("username");
+    if(username === null){
         window.location="login.html";
     }
-    $("#userGetReports").text(cookie_username);
+    $("#userCustomerRequest").text(username);
     var cookie_scope = $.cookie("scope")
     if (cookie_scope === 'admin') {
         $('#adminMenu').show();

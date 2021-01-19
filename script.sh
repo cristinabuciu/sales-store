@@ -22,3 +22,7 @@ cd ../
 cd customer-request-service
 docker build -t dockercristinabuciu/proiect-cc-customer-request-service:latest -f Dockerfile .
 cd ../
+
+cd recommendation-service
+docker build -t dockercristinabuciu/proiect-cc-recommendation-service:latest -f Dockerfile .
+cd ../

@@ -69,6 +69,18 @@ services:
     depends_on:
       - db
 
+  recommendation-service:
+    image: dockercristinabuciu/proiect-cc-recommendation-service:latest
+    links:
+      - db
+    ports:
+      - "5005:5000"
+
+    networks:
+      - mynet
+    depends_on:
+      - db
+
   db:
     image: mysql:5.7
     ports:

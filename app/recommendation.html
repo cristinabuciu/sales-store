@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sales Store Add Stock</title>
+    <title>Help</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,7 +19,6 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -28,8 +27,8 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-      <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+     <!-- Sidebar -->
+     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -105,7 +104,6 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
         
-        
        <!-- Nav Item - Help -->
        <li class="nav-item">
         <a class="nav-link" href="customer-request.html">
@@ -119,7 +117,8 @@
         
                     
         <!-- Nav Item - Help -->
-        <div id="adminMenu" style="display: none;">   
+
+        <div id="adminMenu" style="display: none;"> 
             <li class="nav-item">
                 <a class="nav-link" href="users-feedback.html">
                     <!--            <a class="nav-link" href="add_stock.html">-->
@@ -130,6 +129,7 @@
                 <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
         </div>
+            
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
@@ -195,7 +195,7 @@
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="userGetReports"></span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="usersRecommendation"></span>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -214,101 +214,47 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Reports</h1>
-                <!--                <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>-->
-                <!-- Form -->
-                <form>
-                    <div class="form-group">
-                        <button onclick="getStockReport()" type="button" class="btn btn-primary">Get stock report</button>
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">User requests table</h6>
                     </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Stock Report</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="stockReport" width="100%" cellspacing="0">
-                                    <thead>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>Date</th>
                                         <th>Name</th>
-                                        <th>Provider</th>
-                                        <th>Stock</th>
+                                        <th>Email</th>
+                                        <th>Phone number</th>
+                                        <th>Message</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button onclick="getOrdersReport()" type="button" class="btn btn-primary">Get orders report</button>
-                    </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Orders Report</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="ordersReport" width="100%" cellspacing="0">
-                                    <thead>
+                                </thead>
+                                <tfoot>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Item Id</th>
-                                        <th>User Id</th>
-                                        <th>Quantity</th>
-                                        <th>Datetime</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <button onclick="getUsersReport()" type="button" class="btn btn-primary">Get users report</button>
-                    </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Users Report</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="usersReport" width="100%" cellspacing="0">
-                                    <thead>
-                                    <tr>
-                                        <th>Id</th>
+                                        <th>Date</th>
                                         <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone number</th>
+                                        <th>Message</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tfoot>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </form>
-                <!-- end Form -->
-
-                <br>
-
-
+                </div>
             </div>
             <!-- /.container-fluid -->
 
-        </div>
         <!-- End of Main Content -->
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
+                    <span>Copyright &copy; SalesStore 2021</span>
                 </div>
             </div>
         </footer>
@@ -363,9 +309,8 @@
 
 <script src="js/jquery-cookie/jquery.cookie.js"></script>
 
-<script src="js/demo/add_stock.js"></script>
+<script src="js/demo/recommendation.js"></script>
 <script src="js/demo/logout.js"></script>
-<script src="js/demo/get_reports.js"></script>
 
 </body>
 
