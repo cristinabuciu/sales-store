@@ -1,12 +1,12 @@
 $( document ).ready(function() {
     var cookie_username = $.cookie("username");
-    if(cookie_username === null){
+    if(cookie_username == null){
         window.location="login.html";
     }
     $("#userAddStock").text(cookie_username);
     var cookie_scope = $.cookie("scope")
-    if (cookie_scope === 'admin') {
-        $('#adminMenu').show();
+    if (cookie_scope !== 'admin') {
+        window.location="login.html";
     }
 });
 

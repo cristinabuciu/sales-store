@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     var username = $.cookie("username");
-    if(username === null){
+    if(username == null){
         window.location="login.html";
     }
     $("#userCustomerRequest").text(username);
@@ -9,9 +9,8 @@ $(document).ready(function() {
     if (cookie_scope === 'admin') {
         $('#adminMenu').show();
     }
-    
+    var token = $.cookie("token");
     $.ajax({
-        // url: "http://192.168.99.124:5001/verify-token",
         url: "http://localhost:5001/verify-token",
         type: "POST",
         headers: {

@@ -1,6 +1,6 @@
 $( document ).ready(function() {
     var cookie_username = $.cookie("username");
-    if(cookie_username === null){
+    if(cookie_username == null){
         window.location="login.html";
     }
     $("#useGetReports").text(cookie_username);

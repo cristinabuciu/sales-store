@@ -25,9 +25,13 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def home() :
     return render_template('layout.html')
 
-@app.route("/get-messages", methods=["GET"])
+@app.route("/get-recommendation", methods=["POST"])
 @cross_origin()
-def get_stock_report() -> List[Dict]:
+def get_recommendation() -> List[Dict]:
+
+    body = request.get_json()
+    username = body['username']
+
     config = {
         'user': 'root',
         'password': 'root',
@@ -37,29 +41,41 @@ def get_stock_report() -> List[Dict]:
     }
     connection = mysql.connector.connect(**config)
     cursor = connection.cursor()
-    query = "SELECT * FROM messages"
+    
+    # get user id
+    query = "SELECT user_id FROM users WHERE username =\'" + username + "\'"
     cursor.execute(query)
-    results = [[date.strftime("%m/%d/%Y"), name, email, phone_number, message] for (date, name, email, phone_number, message) in cursor]
+    user = cursor.fetchone()[0]
+    
+    # get all orders
+    query = "SELECT * FROM orders"
+    cursor.execute(query)
+    orders = [[item_id, user_id, quantity] for (_, item_id, user_id, quantity, _) in cursor]
+    
+    orders.sort(key = lambda x : x[1])
+    sorted_orders = orders[-5 : ]
+    
+    results = []
+    for sorted_order in sorted_orders:
+        item_id = sorted_order[0]
+        query = "SELECT item_name, provider FROM stock WHERE item_id =\'" + str(item_id) + "\'"
+        cursor.execute(query)
+        name_and_provider = cursor.fetchone()
+        query = "SELECT price FROM price WHERE item_id =\'" + str(item_id) + "\'"
+        cursor.execute(query)
+        price = cursor.fetchone()[0]
+        results.append([name_and_provider[0], name_and_provider[1], price])
+
     cursor.close()
     connection.close()
+    app.logger.info(results)
     return json.dumps(results)
 
-@app.route("/post-message", methods=["POST"])
+@app.route("/get-custom-recommendation", methods=["POST"])
 @cross_origin()
-def post_message() -> str:
+def get_custom_recommendation() -> str:
     body = request.get_json()
-    name = ''
-    email = ''
-    phone_number = ''
-    message = ''
-    if "name" in body:
-        name = body['name']
-    if "email" in body:
-        email = body['email']
-    if "phone_number" in body:
-        phone_number = body['phone_number']
-    if "message" in body:
-        message = body['message']
+
     config = {
         'user': 'root',
         'password': 'root',
@@ -70,15 +86,55 @@ def post_message() -> str:
 
     connection = mysql.connector.connect(**config)
     cursor = connection.cursor()
-    update_query = "INSERT INTO messages VALUES (" +  "\'" + time.strftime('%Y-%m-%d %H:%M:%S') + "\'" + "," + "\'" + name + "\'" + "," + "\'"+email + "\',\'" + phone_number + "\'," + "\'" + message + "\'" + ")"
-    app.logger.info("QUERY: " + update_query)
-    # cursor.execute("INSERT INTO messages (date, name, email, phone_number, message) VALUES ('%s',%s, %s, %s)")
-    cursor.execute(update_query)
-    connection.commit()
+    body = request.get_json()
+    provider = body['provider']
+
+    min_val = int(body["min_val"])
+    max_val = int(body["max_val"])
+    
+    query = "SELECT item_id, item_name, provider FROM stock"
+    cursor.execute(query)
+    stocks = [[item_id, item_name, provider] for (item_id, item_name, provider) in cursor]
+    if provider != 'Choose...':
+        stocks = [stock for stock in stocks if stock[2] == provider]
+
+    results = []
+
+    for stock in stocks:
+        item_id = stock[0]
+        item_name = stock[1]
+        provider = stock[2]
+        query = "SELECT price FROM price WHERE item_id =\'" + str(item_id) + "\'"
+        cursor.execute(query)
+        price = cursor.fetchone()[0]
+        if (price >= min_val and price <= max_val) :
+            results.append([item_name, provider, price])
 
     cursor.close()
     connection.close()
-    return json.dumps("OK")
+    app.logger.info(results)
+    return json.dumps(results)
+
+@app.route("/get-providers", methods=["GET"])
+@cross_origin()
+def get_providers() -> List[Dict]:
+    config = {
+        'user': 'root',
+        'password': 'root',
+        'host': 'db',
+        'port': '3306',
+        'database': 'store'
+    }
+    connection = mysql.connector.connect(**config)
+    cursor = connection.cursor()
+    query = "SELECT provider FROM stock"
+    cursor.execute(query)
+    results = []
+    for provider in cursor:
+        results.append(provider)
+    cursor.close()
+    connection.close()
+    return json.dumps(list( dict.fromkeys(results)))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)

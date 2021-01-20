@@ -14,12 +14,12 @@
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-
+    
 </head>
 
 <body id="page-top">
@@ -51,17 +51,6 @@
 
         <!-- Nav Item - Add stock -->
         <li class="nav-item">
-            <a class="nav-link" href="sales.html">
-                <!--            <a class="nav-link" href="add_stock.html">-->
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <span>Order</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Add stock -->
-        <li class="nav-item">
             <a class="nav-link" href="stock.html">
                 <!--            <a class="nav-link" href="add_stock.html">-->
                 <i class="fa fa-check" aria-hidden="true"></i>
@@ -73,10 +62,10 @@
 
         <!-- Nav Item - Add stock -->
         <li class="nav-item">
-            <a class="nav-link" href="add_stock.html">
+            <a class="nav-link" href="sales.html">
                 <!--            <a class="nav-link" href="add_stock.html">-->
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Add Stock</span></a>
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <span>Order</span></a>
         </li>
 
         <!-- Divider -->
@@ -126,6 +115,16 @@
                     <span>Reports</span></a>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Add stock -->
+            <li class="nav-item">
+                <a class="nav-link" href="add_stock.html">
+                    <!--            <a class="nav-link" href="add_stock.html">-->
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Add Stock</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -215,36 +214,91 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">User requests table</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone number</th>
-                                        <th>Message</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone number</th>
-                                        <th>Message</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                </tbody>
-                            </table>
+                <div id = "firstGraph" style="margin-bottom: 30px;">
+                    <h1 class="h3 mb-2 text-gray-800">Get recommendation</h1>
+                    <br /> <br />
+                    <hr class="sidebar-divider my-0">
+                    
+                    <h4 class="h5 mb-2 text-gray-800">Get the best recommendations based on your past orders and most popular products!</h4>
+                    <button style="margin-top:10px; margin-bottom:20px;" id="showRecommendations" type="button" class="btn btn-primary">Get recommendations</button>
+                    
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Recommendations - That we think you might like</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Provider</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Provider</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <div>
+                    <br /> <br />
+                    <hr class="sidebar-divider my-0">
+                    
+                    <h4 class="h5 mb-2 text-gray-800">Get the best recommendations suited for your criterias!</h4>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect02">Choose Provider</label>
+                          </div>
+                          <select class="custom-select" id="inputGroupSelect02">
+
+                          </select>
+                        </div>
+                    </div>
+                    <br/>
+                    Filter by price interval:</p> <b> 10</b>  &nbsp;&nbsp;<input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="10000" data-slider-step="5" data-slider-value="[200,500]"/>  &nbsp;&nbsp; <b> 10000</b>
+                    <br/>
+                    <br/>
+                    <button style="margin-top:10px; margin-bottom:20px;" id="showCustomRecommendations" type="button" class="btn btn-primary">Get recommendations</button>
+                    
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Recommendations - That fits your criterias best</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Provider</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Provider</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                
                 </div>
             </div>
             <!-- /.container-fluid -->
@@ -312,6 +366,8 @@
 
 <script src="js/demo/recommendation.js"></script>
 <script src="js/demo/logout.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
 
 </body>
 

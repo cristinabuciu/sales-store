@@ -1,13 +1,12 @@
 $(document).ready(function() {
     var username = $.cookie("username");
-    if(username === null){
+    if(username == null){
         window.location="login.html";
     }
     $("#usersFeedback").text(username);
     var token = $.cookie("token")
     var cookie_scope = $.cookie("scope")
     if (cookie_scope !== 'admin') {
-
         alert('No admin!' + cookie_scope + ' ' + cookie_username)
         window.location="login.html";
     }
