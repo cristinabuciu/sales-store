@@ -77,9 +77,13 @@ def get_orders_report() -> List[Dict]:
     }
     connection = mysql.connector.connect(**config)
     cursor = connection.cursor()
-    query = "SELECT * FROM orders"
+    query = f"SELECT o.order_id, s.item_name, u.username, o.quantity, o.order_timestamp, p.price " \
+            f"FROM orders o, stock s, users u, price p " \
+            f"WHERE o.item_id=s.item_id AND o.user_id=u.user_id AND o.item_id=p.item_id"
+    # query = "SELECT * FROM orders"
+    app.logger.info("QUERY: " + query)
     cursor.execute(query)
-    results = [[order_id, item_id, user_id, quantity, str(datetime.fromtimestamp(oder_timestamp))] for (order_id, item_id, user_id, quantity, oder_timestamp) in cursor]
+    results = [[order_id, item_id, user_id, quantity, (price * quantity),str(datetime.fromtimestamp(oder_timestamp))] for (order_id, item_id, user_id, quantity, oder_timestamp, price) in cursor]
     cursor.close()
     connection.close()
     return json.dumps(results)
