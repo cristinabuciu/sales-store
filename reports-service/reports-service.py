@@ -60,7 +60,7 @@ def get_users_report() -> List[Dict]:
     cursor = connection.cursor()
     query = "SELECT * FROM users"
     cursor.execute(query)
-    results = [[user_id, username] for (user_id, username, password_hash) in cursor]
+    results = [[user_id, username, _, _] for (user_id, username, _, _) in cursor]
     cursor.close()
     connection.close()
     return json.dumps(results)

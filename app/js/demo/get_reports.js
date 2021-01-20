@@ -3,7 +3,7 @@ $( document ).ready(function() {
     if(cookie_username == null){
         window.location="login.html";
     }
-    $("#useGetReports").text(cookie_username);
+    $("#userGetReports").text(cookie_username);
     var cookie_scope = $.cookie("scope")
     if (cookie_scope !== 'admin') {
         alert('No admin!' + cookie_scope + ' ' + cookie_username)
