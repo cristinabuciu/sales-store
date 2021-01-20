@@ -7,6 +7,8 @@
     var cookie_scope = $.cookie("scope")
     if (cookie_scope === 'admin') {
         $('#adminMenu').show();
+    } else {
+        $('#displayUser').show();
     }
 });
 
